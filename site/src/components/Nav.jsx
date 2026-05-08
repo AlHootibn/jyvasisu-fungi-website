@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
 import { tr } from '../translations'
 import './Nav.css'
@@ -20,6 +20,7 @@ export default function Nav() {
     { to: '/', label: t.home },
     { to: '/varieties', label: t.varieties },
     { to: '/recipes', label: t.recipes },
+    { to: '/blog', label: t.blog },
     { to: '/sustainability', label: t.sustainability },
     { to: '/where-to-buy', label: t.whereToBuy },
     { to: '/contact', label: t.contact },
@@ -51,6 +52,7 @@ export default function Nav() {
         </nav>
 
         <div className="nav__right">
+          <Link to="/order" className="nav__order-btn">{t.order}</Link>
           <div className="nav__lang">
             <button
               className={`nav__lang-btn${lang === 'en' ? ' nav__lang-btn--active' : ''}`}

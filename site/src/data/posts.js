@@ -1,0 +1,118 @@
+export const POSTS = [
+  {
+    slug: 'spring-flush-blue-oyster',
+    date: '2026-04-28',
+    readTime: 4,
+    category: { en: 'Harvest Update', fi: 'Sadonkorjuupäivitys' },
+    img: 'https://images.unsplash.com/photo-1726177973715-9d17703e8d68?w=1200&q=80',
+    en: {
+      title: 'Spring Flush — Our Best Blue Oyster Harvest Yet',
+      excerpt: 'April brought ideal humidity and the biggest Blue Oyster flush we have seen. Here is what happened and what we changed to make it happen.',
+      body: [
+        { type: 'p', text: 'Every grower waits for a flush like this. The week of April 21st, the humidity settled into a perfect 88% and temperatures held steady at 16°C — and the Blue Oyster responded. Within four days, every substrate block in the growing room had pinned simultaneously.' },
+        { type: 'p', text: 'We harvested just over 60 kg across three days, our highest single-variety output since we opened. The clusters were dense and uniform, caps thin enough to sauté in under two minutes. We rushed a batch to Kauppahalli on the Tuesday morning and it sold out before noon.' },
+        { type: 'h3', text: 'What made the difference' },
+        { type: 'p', text: 'We made one substrate change in February — adding 15% spent coffee grounds sourced from a café on Kauppakatu. The nitrogen boost shortens colonisation time and improves cap density during fruiting. It also cuts our substrate cost slightly.' },
+        { type: 'p', text: 'We will repeat the same mix for the summer blocks and track the results. If the pattern holds, we plan to increase Blue Oyster production by about 30% before autumn.' },
+      ],
+    },
+    fi: {
+      title: 'Keväthuuhtelu — Paras sininen osterivinokas-sato tähän mennessä',
+      excerpt: 'Huhtikuu toi täydellisen kosteuden ja suurimman sinitähkäsienisatomme. Tässä mitä tapahtui ja mitä muutimme sen saavuttamiseksi.',
+      body: [
+        { type: 'p', text: 'Jokainen viljelijä odottaa tällaista satoa. Huhtikuun 21. viikolla kosteus asettui täydelliseen 88%:iin ja lämpötila pysyi 16°C:ssa — ja sininen osterivinokas reagoi. Neljässä päivässä jokainen kasvatushuoneen lohko oli nuppuuntunut samanaikaisesti.' },
+        { type: 'p', text: 'Korjasimme yli 60 kg kolmen päivän aikana — korkein yhden lajikkeen tuotostomme avaamisesta lähtien. Rykelmiä tuli tiiviitä ja tasaisia, lakit niin ohuet, että ne paistuivat alle kahdessa minuutissa. Toimitimme erän Kauppahalliin tiistaiaamuna ja se myytiin loppuun ennen puoltapäivää.' },
+        { type: 'h3', text: 'Mikä teki eron' },
+        { type: 'p', text: 'Teimme yhden alustamuutoksen helmikuussa — lisäsimme 15% käytettyjä kahvinporoja Kauppakadun kahvilasta. Typpilisäys lyhentää kolonisoitumisaikaa ja parantaa lakien tiheyttä hedelmöityksen aikana. Se myös alentaa alustan kustannuksiamme hieman.' },
+        { type: 'p', text: 'Toistamme saman seoksen kesälohkoille ja seuraamme tuloksia. Jos kaava pitää, suunnittelemme tuotannon lisäämistä noin 30% ennen syksyä.' },
+      ],
+    },
+  },
+  {
+    slug: 'compostable-packaging-switch',
+    date: '2026-03-15',
+    readTime: 3,
+    category: { en: 'Sustainability', fi: 'Kestävyys' },
+    img: 'https://images.unsplash.com/photo-1770429939069-2f649afea536?w=1200&q=80',
+    en: {
+      title: 'Why We Switched to Compostable Packaging',
+      excerpt: 'Plastic clamshells were the easy choice. Here is why we changed, what we changed to, and what it actually costs us.',
+      body: [
+        { type: 'p', text: 'When we started, we used standard plastic clamshells. They are cheap, easy to stack, and keep moisture in. Most of the mushroom industry uses them. We used them for the first six months.' },
+        { type: 'p', text: 'The problem was not cost or logistics — it was consistency. We kept telling customers our mushrooms were grown with no chemicals, on local substrate, with the forest in mind. And then we handed them a single-use plastic container. It did not add up.' },
+        { type: 'h3', text: 'What we use now' },
+        { type: 'p', text: 'We now use kraft paper bags with a small ventilation window for loose mushrooms, and flat cardboard trays with a paper band for gift packs. Both are fully compostable in a home compost. The bags come from a printer in Tampere; the trays from a supplier here in Jyväskylä.' },
+        { type: 'p', text: 'Shelf life is slightly shorter — about 4 days versus 6 in plastic. We handle this by harvesting to order as much as possible and delivering more frequently. Several customers have mentioned the packaging specifically as a reason they keep buying from us.' },
+      ],
+    },
+    fi: {
+      title: 'Miksi vaihdoimme kompostoituvaan pakkaukseen',
+      excerpt: 'Muoviset purkit olivat helppo valinta. Tässä syy muutokseen, mitä muutimme ja mitä se todella maksaa meille.',
+      body: [
+        { type: 'p', text: 'Aloittaessamme käytimme tavallisia muovirasioita. Ne ovat halpoja, helposti pinottavia ja pitävät kosteuden sisällä. Suurin osa sienialan toimijoista käyttää niitä. Käytimme niitä ensimmäiset kuusi kuukautta.' },
+        { type: 'p', text: 'Ongelma ei ollut kustannuksissa tai logistiikassa — se oli johdonmukaisuus. Kerroimme jatkuvasti asiakkaille, että sienimme kasvatetaan ilman kemikaaleja, paikallisella alustalla, metsä mielessä. Ja sitten annoimme heille kertakäyttömuoviastian. Se ei sopinut yhteen.' },
+        { type: 'h3', text: 'Mitä käytämme nyt' },
+        { type: 'p', text: 'Käytämme nyt kraftpaperipusseja pienellä tuuletusikkunalla irtosieniä varten ja litteitä pahvialustoja paperinauhalla lahjapakkauksiin. Molemmat kompostoituvat kotikomposterissa. Pussit tulevat tamperelaiselta painotalolta; alustat jyväskyläläiseltä toimittajalta.' },
+        { type: 'p', text: 'Säilyvyysaika on hieman lyhyempi — noin 4 päivää verrattuna 6 päivään muovissa. Käsittelemme tämän korjaamalla tilauksesta niin paljon kuin mahdollista ja toimittamalla useammin. Useat asiakkaat ovat maininneet pakkauksen syynä jatkaa ostamista.' },
+      ],
+    },
+  },
+  {
+    slug: 'enoki-finland-winter-mushroom',
+    date: '2026-02-03',
+    readTime: 3,
+    category: { en: 'Farm News', fi: 'Uutiset tilalta' },
+    img: 'https://images.unsplash.com/photo-1681674300478-4a0d546c9829?w=1200&q=80',
+    en: {
+      title: "Enoki: Finland's Cold-Season Mushroom",
+      excerpt: 'Enoki loves low temperatures — which makes it a natural fit for Central Finland. We added it to the lineup in January.',
+      body: [
+        { type: 'p', text: 'Enoki (Flammulina velutipes) is unusual among cultivated mushrooms: it fruits best in cold. While most of our varieties prefer 16–20°C, enoki pins most reliably between 8–13°C. For a farm in Central Finland, that is not a problem — it is an advantage.' },
+        { type: 'p', text: 'We added the first enoki blocks in January and had our first harvest by late February. The clusters came out tight and white — exactly what you want. Long thin stems, tiny caps, a faint sweetness that is almost impossible to get right unless the temperature is low during fruiting.' },
+        { type: 'h3', text: 'What to do with it' },
+        { type: 'p', text: 'Most people know enoki from ramen, where it goes in at the last second. But it is also excellent raw in salads — it stays crunchy even when dressed. Our favourite preparation: bundle a small handful, wrap tightly in a strip of bacon, and grill over medium heat. The bacon fat bastes the mushroom from outside; the inside stays crisp. Takes 10 minutes.' },
+      ],
+    },
+    fi: {
+      title: 'Enoki: Suomen kylmän kauden sieni',
+      excerpt: 'Enoki rakastaa matalia lämpötiloja — mikä tekee siitä luontevan valinnan Keski-Suomeen. Lisäsimme sen valikoimaamme tammikuussa.',
+      body: [
+        { type: 'p', text: 'Enoki (Flammulina velutipes) on epätavallinen viljeltyjen sienten joukossa: se hedelmöityy parhaiten kylmässä. Kun useimmat lajikkeemme suosivat 16–20°C:ta, enoki nuppuuntuu luotettavimmin 8–13°C:ssa. Keski-Suomen tilalle se ei ole ongelma — se on etu.' },
+        { type: 'p', text: 'Lisäsimme ensimmäiset enoki-lohkot tammikuussa ja saimme ensimmäisen sadon helmikuun lopulla. Rykelmäsieniä tuli tiiviitä ja valkoisia — juuri sellaisia kuin halutaan. Pitkät ohuet varret, pienet lakit, hento makeus, jonka saa oikein vain kun lämpötila on matala hedelmöityksen aikana.' },
+        { type: 'h3', text: 'Mitä sillä tehdä' },
+        { type: 'p', text: 'Useimmat tuntevat enokin ramenista, johon se lisätään viime hetkellä. Mutta se on myös erinomainen raakana salaateissa — se pysyy rapeana jopa kastettuna. Suosikki valmistustapamme: niputa pieni kourallinen, kääri tukevasti pekoninsuikaleeseen ja grillaa keskilämmöllä. Pekonin rasva vastelee sientä ulkopuolelta; sisäpuoli pysyy rapeana. Vie 10 minuuttia.' },
+      ],
+    },
+  },
+  {
+    slug: 'how-one-room-became-a-farm',
+    date: '2026-01-10',
+    readTime: 5,
+    category: { en: 'Our Story', fi: 'Tarinamme' },
+    img: 'https://images.unsplash.com/photo-1770884844724-ac9e36b599e9?w=1200&q=80',
+    en: {
+      title: 'How a Single Grow Room Became a Farm',
+      excerpt: 'We started with one room, one variety, and no customers. Twelve months later we supply five markets across Jyväskylä.',
+      body: [
+        { type: 'p', text: 'The first grow room was a converted storage space — about 12 square metres, a second-hand humidity controller, and 20 substrate blocks of Blue Oyster. We had read everything we could find about mushroom cultivation and still had no real idea what we were doing.' },
+        { type: 'p', text: 'The first flush came after 18 days. Small clusters, a little pale from inconsistent light, but unmistakably real. We harvested about 3 kg and gave most of it away to neighbours and a restaurant on Kauppakatu who agreed to try it. The chef called back two days later to order more.' },
+        { type: 'h3', text: 'Year one in numbers' },
+        { type: 'p', text: "We expanded to three rooms by May and added Lion's Mane in July. By December we were running five varieties across 80 substrate blocks per cycle. Total harvest for 2026: approximately 420 kg across all varieties." },
+        { type: 'p', text: 'The hardest part was not cultivation — it was consistency. Customers and restaurants need to know supply will be there every week. Building that reliability took most of the year. We now harvest on a rolling two-week cycle per room, which keeps deliveries steady regardless of which blocks are peaking.' },
+        { type: 'p', text: 'We still operate from the same building. The first grow room is still running, and it still produces our best Blue Oyster. There is something about a room that has been used for a while that makes the environment settle in.' },
+      ],
+    },
+    fi: {
+      title: 'Kuinka yhdestä kasvatushuoneesta tuli tila',
+      excerpt: 'Aloitimme yhdellä huoneella, yhdellä lajikkeella ja ilman asiakkaita. Kaksitoista kuukautta myöhemmin toimitamme viidelle markkinapaikalle ympäri Jyväskylää.',
+      body: [
+        { type: 'p', text: 'Ensimmäinen kasvatushuone oli muunnettu varastotila — noin 12 neliömetriä, käytetty kosteudenohjain ja 20 sinisen osterivinokaan alustalohkoa. Olimme lukeneet kaiken löytämämme sieniviljelyn materiaalin emmekä silti tienneet mitä tekisimme.' },
+        { type: 'p', text: 'Ensimmäinen satohuuhtelu tuli 18 päivän kuluttua. Pieniä rykelmäsieniä, hieman kalpea epätasaisesta valosta, mutta kiistattomasti aitoja. Korjasimme noin 3 kg ja annoimme suurimman osan naapureille ja Kauppakadun ravintolalle. Kokki soitti takaisin kahden päivän kuluttua tilatakseen lisää.' },
+        { type: 'h3', text: 'Ensimmäinen vuosi luvuissa' },
+        { type: 'p', text: 'Laajensimme kolmeen huoneeseen toukokuuhun mennessä ja lisäsimme leijonanharjasienen heinäkuussa. Joulukuuhun mennessä käytimme viittä lajiketta 80 alustalohkolla per sykli. Kokonaissato 2026: noin 420 kg kaikissa lajikkeissa.' },
+        { type: 'p', text: 'Vaikein osa ei ollut viljely — se oli johdonmukaisuus. Asiakkaiden ja ravintoloiden on tiedettävä, että toimitukset tulevat joka viikko. Tämän luotettavuuden rakentaminen vei suurimman osan vuodesta. Nyt korjaamme kahden viikon kierrolla per huone, mikä pitää toimitukset tasaisina.' },
+        { type: 'p', text: 'Toimimme edelleen samassa rakennuksessa. Ensimmäinen kasvatushuone on edelleen käynnissä ja tuottaa edelleen parasta sinistä osterivinokaastamme. Jossain käytetyssä huoneessa on jotain, joka tekee ympäristöstä vakiintuneen.' },
+      ],
+    },
+  },
+]
