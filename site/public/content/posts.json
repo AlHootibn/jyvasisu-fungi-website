@@ -1,6 +1,20 @@
 {
   "posts": [
     {
+      "slug": "lions-mane-how-to-grow-and-cook",
+      "date": "2026-05-08",
+      "readTime": 4,
+      "category_en": "Farm News",
+      "category_fi": "Uutiset tilalta",
+      "img": "https://images.unsplash.com/photo-1625286535466-68a6d71e4568?w=1200&q=80",
+      "title_en": "Lion's Mane: Our Most Talked-About Mushroom",
+      "excerpt_en": "It looks like nothing else, tastes like the sea, and sells out every week. Here is how we grow it and how to cook it properly.",
+      "body_en": "Lion's Mane (Hericium erinaceus) is one of the most recognisable mushrooms in the world — there is nothing else that looks like it. The long white cascading spines grow outward from a single base, resembling a waterfall frozen in place. In the wild it grows on wounded or dying hardwood trees. In our grow room, we produce it year-round on supplemented sawdust blocks.\n\nWe first added Lion's Mane to our lineup in July of our first year. It was the most requested variety by restaurants — chefs had been reading about it and wanted to work with it. The first flush surprised us: blocks that looked dormant for three weeks suddenly pinned overnight. Now we run it on a three-week cycle and harvest every block by hand, pulling the whole fruiting body when the spines reach about 2 cm.\n\n### What it tastes like\n\nThe flavour is mild and sweet, with a dense, meaty texture that holds up well in a hot pan. Many people compare it to lobster or crab — not in taste exactly, but in the way it absorbs butter and gives back something rich and satisfying. Slice it thick, at least 1.5 cm, and press it flat in a dry pan over medium-high heat for 3–4 minutes per side without moving it. The outside caramelises; the inside stays juicy.\n\nWe sell it in 150g packs — enough for two people as a side or one as a main. It is by far our best-selling variety among home cooks who have tried it once and come back every week.",
+      "title_fi": "Leijonanharjasieni: eniten puhuttu sienemme",
+      "excerpt_fi": "Se näyttää kuin mikään muu, maistuu mereltä ja loppuu joka viikko. Näin kasvatamme ja valmistamme sen oikein.",
+      "body_fi": "Leijonanharjasieni (Hericium erinaceus) on yksi maailman tunnistettavimmista sienistä — mikään muu ei näytä samanlaiselta. Pitkät valkoiset riippuvat piikit kasvavat ulospäin yhdestä tyviosasta, muistuttaen jäätynyttä vesiputousta. Luonnossa se kasvaa vahingoittuneilla tai kuolevilla lehtipuilla. Kasvatushuoneessamme tuotamme sitä ympäri vuoden täydennettyihin sahanpurulohkoihin.\n\nLisäsimme leijonanharjasienen valikoimaamme heinäkuussa ensimmäisenä vuotenamme. Se oli ravintoloiden eniten toivoma lajike — kokit olivat lukeneet siitä ja halusivat käyttää sitä. Ensimmäinen satohuuhtelu yllätti meidät: kolme viikkoa levossa olleet lohkot nuppuuntuivat yhdessä yössä. Nyt kasvatamme sitä kolmen viikon syklissä ja korjaamme jokaisen lohkon käsin, irrottamalla koko hedelmäkappaleen kun piikit ovat noin 2 cm pitkät.\n\n### Miltä se maistuu\n\nMaku on mieto ja makea, ja tiivis lihaisa rakenne kestää hyvin kuumalla pannulla. Monet vertaavat sitä hummeriin tai rapuun — ei täsmälleen maun puolesta, vaan siinä miten se imee voita ja antaa takaisin jotain täyteläistä ja tyydyttävää. Viipaloi se paksuksi, vähintään 1,5 cm, ja paina litteäksi kuivalle pannulle keskilämmöllä 3–4 minuuttia puolelta liikuttamatta sitä. Ulkopinta karamellisoituu; sisäpuoli pysyy mehevänä.\n\nMyymme sitä 150 g pakkauksissa — riittää kahdelle lisukkeeksi tai yhdelle pääruoaksi. Se on ylivoimaisesti suosituin lajikkeemme kotikokkaajien keskuudessa, jotka ovat kokeilleet sitä kerran ja palaavat joka viikko."
+    },
+    {
       "slug": "spring-flush-blue-oyster",
       "date": "2026-04-28",
       "readTime": 4,
