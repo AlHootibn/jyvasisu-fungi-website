@@ -1,0 +1,137 @@
+.philosophy__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.philosophy__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.philosophy__text p {
+  color: rgba(44,58,46,0.82);
+  margin-bottom: 16px;
+}
+.philosophy__img-wrap {
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4/3;
+}
+.philosophy__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.philosophy__img-wrap:hover img { transform: scale(1.02); }
+
+.practices__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.practice-card {
+  padding: 36px 28px;
+  border: 1px solid var(--oyster-grey);
+  border-radius: var(--radius);
+  background: var(--birch-cream);
+}
+.practice-card__icon {
+  color: var(--lichen-green);
+  margin-bottom: 20px;
+}
+.practice-card__title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.practice-card__desc {
+  font-size: 15px;
+  color: rgba(44,58,46,0.72);
+  line-height: 1.65;
+}
+
+.comparison-table {
+  border: 1px solid var(--oyster-grey);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 15px;
+}
+.comparison-table__head,
+.comparison-table__row {
+  display: grid;
+  grid-template-columns: 180px repeat(4, 1fr);
+  gap: 0;
+}
+.comparison-table__head {
+  background: var(--forest-floor);
+  color: var(--birch-cream);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.comparison-table__head > div,
+.comparison-table__row > div {
+  padding: 14px 16px;
+  border-right: 1px solid rgba(194,186,176,0.3);
+}
+.comparison-table__head > div:last-child,
+.comparison-table__row > div:last-child { border-right: none; }
+
+.comparison-table__row {
+  border-top: 1px solid var(--oyster-grey);
+}
+.comparison-table__row--ours {
+  background: rgba(122,140,110,0.08);
+}
+.comparison-table__label {
+  font-weight: 500;
+}
+
+.local-eco__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 80px;
+  align-items: center;
+}
+.local-eco__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 600;
+  color: var(--birch-cream);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.local-eco__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  text-align: right;
+}
+.local-eco__stat-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--harvest-amber);
+}
+.local-eco__stat-label {
+  font-size: 13px;
+  color: rgba(245,240,232,0.6);
+}
+
+@media (max-width: 768px) {
+  .philosophy__grid { grid-template-columns: 1fr; gap: 40px; }
+  .practices__grid { grid-template-columns: 1fr; }
+  .comparison-table__head,
+  .comparison-table__row { grid-template-columns: 1fr 1fr; }
+  .comparison-table__head > div:nth-child(n+4),
+  .comparison-table__row > div:nth-child(n+4) { display: none; }
+  .local-eco__inner { grid-template-columns: 1fr; gap: 40px; }
+  .local-eco__stats { flex-direction: row; text-align: center; }
+}

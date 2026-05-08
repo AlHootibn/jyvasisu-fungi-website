@@ -1,0 +1,102 @@
+.markets__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.market-card {
+  border: 1px solid var(--oyster-grey);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--spore-white);
+}
+.market-card__top {
+  background: var(--forest-floor);
+  padding: 20px 24px;
+}
+.market-card__type {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--harvest-amber);
+  display: block;
+  margin-bottom: 6px;
+}
+.market-card__name {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--birch-cream);
+}
+.market-card__body {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.market-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(44,58,46,0.8);
+  font-size: 14px;
+}
+.market-info-row svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--lichen-green);
+}
+.market-card__note {
+  font-size: 13px;
+  color: rgba(44,58,46,0.55);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.map-embed {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--oyster-grey);
+}
+.map-credit {
+  font-size: 12px;
+  color: rgba(44,58,46,0.5);
+  padding: 8px 12px;
+  background: var(--spore-white);
+  border-top: 1px solid var(--oyster-grey);
+}
+.map-credit a { color: var(--lichen-green); text-decoration: underline; }
+
+.direct__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.direct__card {
+  border: 1px solid var(--oyster-grey);
+  border-radius: var(--radius);
+  padding: 44px 40px;
+  background: var(--spore-white);
+}
+.direct__card--dark {
+  background: var(--forest-floor);
+  border-color: transparent;
+}
+.direct__title {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.direct__desc {
+  color: rgba(44,58,46,0.75);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 768px) {
+  .markets__grid { grid-template-columns: 1fr; }
+  .direct__grid { grid-template-columns: 1fr; }
+  .direct__card { padding: 32px 24px; }
+}

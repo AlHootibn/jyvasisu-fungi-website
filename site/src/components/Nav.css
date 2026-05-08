@@ -1,0 +1,132 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--forest-floor);
+  transition: box-shadow 0.2s ease;
+}
+.nav--scrolled {
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--birch-cream);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.nav__links {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.nav__link {
+  color: rgba(245,240,232,0.75);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  transition: color 0.15s ease;
+  text-decoration: none;
+}
+.nav__link:hover,
+.nav__link--active {
+  color: var(--birch-cream);
+}
+.nav__link--active {
+  font-weight: 500;
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav__lang {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav__lang-btn {
+  background: none;
+  border: none;
+  color: rgba(245,240,232,0.5);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 4px 5px;
+  transition: color 0.15s;
+  font-family: var(--font-body);
+}
+.nav__lang-btn:hover {
+  color: rgba(245,240,232,0.85);
+}
+.nav__lang-btn--active {
+  color: var(--birch-cream);
+  font-weight: 700;
+}
+.nav__lang-divider {
+  color: rgba(245,240,232,0.25);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+.nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--birch-cream);
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+
+@media (max-width: 768px) {
+  .nav__burger { display: flex; }
+
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--forest-floor);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav__links--open { display: flex; }
+
+  .nav__link {
+    padding: 13px 24px;
+    width: 100%;
+    font-size: 16px;
+  }
+}
