@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(stitch-loop)",
+      "Bash(netlify deploy *)",
+      "Bash(npm run *)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(netlify status *)",
+      "WebFetch(domain:keskisuomi.fi)",
+      "WebFetch(domain:keskisuomenliitto.fi)",
+      "WebFetch(domain:keski-laatu.fi)",
+      "WebFetch(domain:brandpad.io)",
+      "Bash(python *)",
+      "Bash(gh auth *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git config *)",
+      "Bash(gh repo *)"
+    ]
+  }
+}
