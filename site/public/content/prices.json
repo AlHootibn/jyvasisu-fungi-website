@@ -1,9 +1,29 @@
 {
   "items": [
-    { "key": "Blue Oyster", "pack": "200g", "price": 6.50 },
-    { "key": "Lion's Mane", "pack": "150g", "price": 9.00 },
-    { "key": "King Oyster", "pack": "200g", "price": 7.50 },
-    { "key": "Shiitake", "pack": "200g", "price": 8.00 },
-    { "key": "Enoki", "pack": "100g", "price": 5.50 }
+    {
+      "key": "Blue Oyster",
+      "pack": "200g",
+      "price": 6.5
+    },
+    {
+      "key": "Lion's Mane",
+      "pack": "100g",
+      "price": 9
+    },
+    {
+      "key": "King Oyster",
+      "pack": "200g",
+      "price": 7.5
+    },
+    {
+      "key": "Shiitake",
+      "pack": "200g",
+      "price": 8
+    },
+    {
+      "key": "Enoki",
+      "pack": "100g",
+      "price": 7.5
+    }
   ]
 }
