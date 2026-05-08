@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLang } from '../context/LanguageContext'
 import { tr } from '../translations'
+import { usePrices } from '../context/DataContext'
 import './Order.css'
 
 const VARIETY_IMGS = {
@@ -36,13 +37,15 @@ export default function Order() {
   const { lang } = useLang()
   const t = tr[lang].order
   const tv = tr[lang].varieties
+  const dynamicPrices = usePrices()
+  const getVarietyInfo = (key) => dynamicPrices ? dynamicPrices[key] : t.varieties[key]
 
   const [quantities, setQuantities] = useState({})
   const [step, setStep] = useState(1)
   const [form, setForm] = useState({ type: 'delivery', date: '', address: '', name: '', email: '', phone: '', notes: '' })
   const [sent, setSent] = useState(false)
 
-  const subtotal = VARIETY_KEYS.reduce((s, k) => s + (quantities[k] || 0) * t.varieties[k].price, 0)
+  const subtotal = VARIETY_KEYS.reduce((s, k) => s + (quantities[k] || 0) * (getVarietyInfo(k)?.price ?? 0), 0)
   const deliveryFee = form.type === 'delivery' && subtotal > 0 && subtotal < FREE_THRESHOLD ? DELIVERY_FEE : 0
   const total = subtotal + deliveryFee
   const canContinue = subtotal >= MIN_ORDER
@@ -94,7 +97,7 @@ export default function Order() {
                 <div className="variety-picker">
                   {VARIETY_KEYS.map(key => {
                     const qty = quantities[key] || 0
-                    const info = t.varieties[key]
+                    const info = getVarietyInfo(key)
                     const displayName = tv.mushrooms[key].displayName
                     return (
                       <div key={key} className={`picker-card${qty > 0 ? ' picker-card--selected' : ''}`}>
@@ -186,7 +189,7 @@ export default function Order() {
                 {orderItems.map(key => (
                   <li key={key} className="order-summary__item">
                     <span className="order-summary__name">{tv.mushrooms[key].displayName}</span>
-                    <span className="order-summary__detail">×{quantities[key]} · €{(quantities[key] * t.varieties[key].price).toFixed(2)}</span>
+                    <span className="order-summary__detail">×{quantities[key]} · €{(quantities[key] * (getVarietyInfo(key)?.price ?? 0)).toFixed(2)}</span>
                   </li>
                 ))}
               </ul>

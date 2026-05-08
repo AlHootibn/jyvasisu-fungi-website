@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider } from './context/LanguageContext'
+import { DataProvider } from './context/DataContext'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -15,6 +16,7 @@ import BlogPost from './pages/BlogPost'
 export default function App() {
   return (
     <LanguageProvider>
+      <DataProvider>
       <BrowserRouter>
         <Nav />
         <main>
@@ -32,6 +34,7 @@ export default function App() {
         </main>
         <Footer />
       </BrowserRouter>
+      </DataProvider>
     </LanguageProvider>
   )
 }

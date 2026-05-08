@@ -1,19 +1,20 @@
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
 import { tr } from '../translations'
-import { POSTS } from '../data/posts'
+import { usePosts } from '../context/DataContext'
 import './Blog.css'
 
 export default function BlogPost() {
   const { slug } = useParams()
   const { lang } = useLang()
   const t = tr[lang].blog
+  const posts = usePosts()
 
-  const post = POSTS.find(p => p.slug === slug)
+  const post = posts.find(p => p.slug === slug)
   if (!post) return <Navigate to="/blog" replace />
 
   const content = post[lang]
-  const others = POSTS.filter(p => p.slug !== slug).slice(0, 3)
+  const others = posts.filter(p => p.slug !== slug).slice(0, 3)
 
   return (
     <div className="blog">

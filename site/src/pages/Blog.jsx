@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
 import { tr } from '../translations'
-import { POSTS } from '../data/posts'
+import { usePosts } from '../context/DataContext'
 import './Blog.css'
 
 export default function Blog() {
   const { lang } = useLang()
   const t = tr[lang].blog
-  const [featured, ...rest] = POSTS
+  const posts = usePosts()
+  const [featured, ...rest] = posts
 
   return (
     <div className="blog">

@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: site/public/images
+public_folder: /images
+
+collections:
+  - name: blog
+    label: Blog Posts
+    files:
+      - label: All Posts
+        name: all_posts
+        file: site/public/content/posts.json
+        fields:
+          - name: posts
+            label: Posts
+            widget: list
+            summary: "{{fields.title_en}}"
+            fields:
+              - { label: "Slug (URL key, no spaces)", name: slug, widget: string }
+              - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
+              - { label: "Read time (minutes)", name: readTime, widget: number, default: 3, value_type: int }
+              - { label: "Category (English)", name: category_en, widget: string }
+              - { label: "Category (Finnish)", name: category_fi, widget: string }
+              - { label: "Image URL", name: img, widget: string }
+              - { label: "Title (English)", name: title_en, widget: string }
+              - { label: "Short excerpt (English)", name: excerpt_en, widget: text }
+              - { label: "Body text (English)", name: body_en, widget: markdown }
+              - { label: "Title (Finnish)", name: title_fi, widget: string }
+              - { label: "Short excerpt (Finnish)", name: excerpt_fi, widget: text }
+              - { label: "Body text (Finnish)", name: body_fi, widget: markdown }
+
+  - name: prices
+    label: Mushroom Prices
+    files:
+      - label: Prices
+        name: prices
+        file: site/public/content/prices.json
+        fields:
+          - name: items
+            label: Varieties
+            widget: list
+            summary: "{{fields.key}} — €{{fields.price}}"
+            fields:
+              - { label: "Variety name (internal key)", name: key, widget: string }
+              - { label: "Pack size", name: pack, widget: string, hint: "e.g. 200g" }
+              - { label: "Price (€)", name: price, widget: number, value_type: float, step: 0.5 }
