@@ -19,6 +19,7 @@ export default function Nav() {
   const links = [
     { to: '/', label: t.home },
     { to: '/varieties', label: t.varieties },
+    { to: '/recipes', label: t.recipes },
     { to: '/sustainability', label: t.sustainability },
     { to: '/where-to-buy', label: t.whereToBuy },
     { to: '/contact', label: t.contact },

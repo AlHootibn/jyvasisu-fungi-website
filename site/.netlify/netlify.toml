@@ -10,6 +10,7 @@ headers = []
 publish = "D:\\Agent\\website mushroom 1\\site\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
+base = "D:\\Agent\\website mushroom 1\\site"
 command = "npm run build"
 
 [build.environment]
