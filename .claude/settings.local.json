@@ -17,7 +17,12 @@
       "Bash(git commit -m ' *)",
       "Bash(git config *)",
       "Bash(gh repo *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(netlify api *)",
+      "Bash(python3 -c \"import sys,json; sites=json.load\\(sys.stdin\\); s=[x for x in sites if 'sieniviljelma' in x.get\\('name',''\\)]; print\\(s[0]['id'] if s else 'not found'\\)\")",
+      "Bash(node -e \"const d=[];process.stdin.on\\('data',c=>d.push\\(c\\)\\);process.stdin.on\\('end',\\(\\)=>{const s=JSON.parse\\(d.join\\(''\\)\\).find\\(x=>x.name==='sieniviljelma-jyvaskyla'\\);console.log\\(s?.id\\)}\\)\")",
+      "Bash(node -e \"const d=[];process.stdin.on\\('data',c=>d.push\\(c\\)\\);process.stdin.on\\('end',\\(\\)=>{try{const j=JSON.parse\\(d.join\\(''\\)\\);console.log\\(JSON.stringify\\(j\\)\\)}catch\\(e\\){console.log\\(d.join\\(''\\)\\)}}\\)\")",
+      "Bash(node *)"
     ]
   }
 }

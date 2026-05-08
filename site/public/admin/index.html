@@ -1,12 +1,460 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager — JyväSisu Fungi</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — JyväSisu Fungi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #1a2016; color: #f0ebe3; min-height: 100vh; }
+
+    /* ── Auth screen ── */
+    #auth-screen {
+      display: flex; align-items: center; justify-content: center; min-height: 100vh;
+    }
+    .auth-box {
+      background: #253020; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+      padding: 40px; width: 100%; max-width: 420px;
+    }
+    .auth-box h1 { font-size: 20px; margin-bottom: 6px; }
+    .auth-box p { font-size: 13px; color: rgba(240,235,227,0.55); margin-bottom: 28px; line-height: 1.5; }
+    .auth-box a { color: #B5762A; }
+
+    /* ── App ── */
+    #app { display: none; }
+    .topbar {
+      background: #151c12; border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 0 24px; height: 56px; display: flex; align-items: center;
+      justify-content: space-between; position: sticky; top: 0; z-index: 10;
+    }
+    .topbar__logo { font-size: 15px; font-weight: 600; color: #f0ebe3; }
+    .topbar__logo span { color: #B5762A; }
+    .topbar__actions { display: flex; gap: 10px; align-items: center; }
+    #status-msg { font-size: 13px; color: #7db87d; }
+    #status-msg.err { color: #e07070; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; gap: 4px; margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .tab-btn {
+      background: none; border: none; color: rgba(240,235,227,0.5); font-size: 14px;
+      font-weight: 500; padding: 10px 18px; cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -1px; transition: color .15s;
+    }
+    .tab-btn.active { color: #f0ebe3; border-bottom-color: #B5762A; }
+
+    /* ── Section titles ── */
+    .section-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #B5762A; margin-bottom: 20px; }
+
+    /* ── Post cards ── */
+    .post-card {
+      background: #253020; border: 1px solid rgba(255,255,255,0.07); border-radius: 6px;
+      margin-bottom: 16px; overflow: hidden;
+    }
+    .post-card__header {
+      padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; user-select: none;
+    }
+    .post-card__title { font-size: 14px; font-weight: 500; }
+    .post-card__date { font-size: 12px; color: rgba(240,235,227,0.45); margin-top: 2px; }
+    .post-card__toggle { font-size: 18px; color: rgba(240,235,227,0.4); transition: transform .2s; }
+    .post-card__toggle.open { transform: rotate(45deg); }
+    .post-card__body { display: none; padding: 0 20px 20px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .post-card__body.open { display: block; }
+
+    /* ── Form elements ── */
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 12px; color: rgba(240,235,227,0.55); margin-bottom: 6px; }
+    .field input, .field textarea {
+      width: 100%; background: #1a2016; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px; padding: 9px 12px; color: #f0ebe3; font-size: 14px;
+      font-family: inherit; resize: vertical; transition: border-color .15s;
+    }
+    .field input:focus, .field textarea:focus { outline: none; border-color: #B5762A; }
+    .field textarea { min-height: 100px; line-height: 1.6; }
+    .field textarea.body { min-height: 180px; font-family: 'Courier New', monospace; font-size: 13px; }
+
+    .lang-tabs { display: flex; gap: 2px; margin-bottom: 14px; margin-top: 16px; }
+    .lang-tab {
+      background: none; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px;
+      color: rgba(240,235,227,0.5); font-size: 12px; font-weight: 600; padding: 4px 10px;
+      cursor: pointer; transition: all .15s;
+    }
+    .lang-tab.active { background: #B5762A; border-color: #B5762A; color: #fff; }
+
+    /* ── Prices table ── */
+    .prices-table { width: 100%; border-collapse: collapse; }
+    .prices-table th {
+      text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: rgba(240,235,227,0.4); padding: 0 12px 12px;
+    }
+    .prices-table td { padding: 8px 12px; }
+    .prices-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .prices-table tr:last-child { border-bottom: none; }
+    .variety-name { font-size: 14px; font-weight: 500; }
+    .price-input {
+      width: 90px; background: #1a2016; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px; padding: 7px 10px; color: #f0ebe3; font-size: 14px; text-align: right;
+    }
+    .price-input:focus { outline: none; border-color: #B5762A; }
+    .pack-input {
+      width: 90px; background: #1a2016; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px; padding: 7px 10px; color: #f0ebe3; font-size: 14px;
+    }
+    .pack-input:focus { outline: none; border-color: #B5762A; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      background: #B5762A; color: #fff; border: none; border-radius: 4px;
+      font-size: 13px; font-weight: 600; padding: 9px 20px; cursor: pointer;
+      transition: background .15s; white-space: nowrap;
+    }
+    .btn-primary:hover { background: #9a5e1c; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06); color: #f0ebe3; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px; font-size: 13px; padding: 9px 16px; cursor: pointer; transition: background .15s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+    .hint { font-size: 12px; color: rgba(240,235,227,0.4); margin-top: 8px; line-height: 1.5; }
+    .add-post-btn {
+      display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.15); border-radius: 6px; padding: 14px 20px;
+      color: rgba(240,235,227,0.5); font-size: 14px; cursor: pointer; width: 100%;
+      transition: all .15s; margin-top: 8px;
+    }
+    .add-post-btn:hover { background: rgba(255,255,255,0.07); color: #f0ebe3; }
+    .delete-btn {
+      background: none; border: none; color: rgba(240,235,227,0.3); font-size: 13px;
+      cursor: pointer; padding: 4px 8px; border-radius: 3px; transition: all .15s;
+    }
+    .delete-btn:hover { background: rgba(200,80,80,0.15); color: #e07070; }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<!-- AUTH SCREEN -->
+<div id="auth-screen">
+  <div class="auth-box">
+    <h1>JyväSisu Admin</h1>
+    <p>
+      Enter your GitHub Personal Access Token.<br>
+      Don't have one? <a href="https://github.com/settings/tokens/new?scopes=repo&description=JyvasisuAdmin" target="_blank">Create one here</a>
+      (select <strong>repo</strong> scope).
+    </p>
+    <div class="field">
+      <label>GitHub Personal Access Token</label>
+      <input type="password" id="token-input" placeholder="ghp_..." autocomplete="off" />
+    </div>
+    <button class="btn-primary" id="auth-btn" style="width:100%">Sign in</button>
+    <p id="auth-err" style="color:#e07070;font-size:13px;margin-top:12px;display:none"></p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header class="topbar">
+    <div class="topbar__logo">JyväSisu <span>Admin</span></div>
+    <div class="topbar__actions">
+      <span id="status-msg"></span>
+      <button class="btn-primary" id="save-btn">Save &amp; Deploy</button>
+      <button class="btn-secondary" id="logout-btn">Sign out</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="blog">Blog Posts</button>
+      <button class="tab-btn" data-tab="prices">Mushroom Prices</button>
+    </div>
+
+    <!-- BLOG TAB -->
+    <div id="tab-blog">
+      <p class="section-title">Blog Posts</p>
+      <div id="posts-list"></div>
+      <button class="add-post-btn" id="add-post-btn">+ Add new post</button>
+    </div>
+
+    <!-- PRICES TAB -->
+    <div id="tab-prices" style="display:none">
+      <p class="section-title">Mushroom Prices</p>
+      <table class="prices-table">
+        <thead>
+          <tr>
+            <th>Variety</th>
+            <th>Pack size</th>
+            <th style="text-align:right">Price (€)</th>
+          </tr>
+        </thead>
+        <tbody id="prices-tbody"></tbody>
+      </table>
+      <p class="hint" style="margin-top:16px">Changes are saved when you click "Save &amp; Deploy". The site rebuilds in ~60 seconds.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+const REPO = 'AlHootibn/jyvasisu-fungi-website';
+const POSTS_PATH = 'site/public/content/posts.json';
+const PRICES_PATH = 'site/public/content/prices.json';
+const DEPLOY_HOOK = 'https://api.netlify.com/build_hooks/69fdfe8655901a168889d53a';
+
+let ghToken = '';
+let postsData = [];
+let pricesData = [];
+
+// ── Auth ──
+document.getElementById('auth-btn').onclick = async () => {
+  const val = document.getElementById('token-input').value.trim();
+  if (!val) return;
+  document.getElementById('auth-btn').disabled = true;
+  document.getElementById('auth-btn').textContent = 'Checking…';
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}`, {
+      headers: { Authorization: `token ${val}` }
+    });
+    if (!r.ok) throw new Error('Invalid token or no access to repo');
+    ghToken = val;
+    localStorage.setItem('gh_token', val);
+    showApp();
+  } catch (e) {
+    document.getElementById('auth-err').textContent = e.message;
+    document.getElementById('auth-err').style.display = 'block';
+    document.getElementById('auth-btn').disabled = false;
+    document.getElementById('auth-btn').textContent = 'Sign in';
+  }
+};
+document.getElementById('token-input').onkeydown = e => { if (e.key === 'Enter') document.getElementById('auth-btn').click(); };
+document.getElementById('logout-btn').onclick = () => {
+  localStorage.removeItem('gh_token');
+  location.reload();
+};
+
+// ── Boot ──
+const saved = localStorage.getItem('gh_token');
+if (saved) { ghToken = saved; showApp(); }
+
+async function showApp() {
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  await loadData();
+}
+
+// ── GitHub helpers ──
+async function ghGet(path) {
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    headers: { Authorization: `token ${ghToken}` }
+  });
+  if (!r.ok) throw new Error('Failed to fetch ' + path);
+  return r.json();
+}
+
+async function ghPut(path, content, msg) {
+  const file = await ghGet(path);
+  const encoded = b64encode(JSON.stringify(content, null, 2));
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${ghToken}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: msg, content: encoded, sha: file.sha })
+  });
+  if (!r.ok) {
+    const d = await r.json();
+    throw new Error(d.message || 'Save failed');
+  }
+}
+
+function b64encode(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+
+// ── Load data ──
+async function loadData() {
+  try {
+    const [postsFile, pricesFile] = await Promise.all([ghGet(POSTS_PATH), ghGet(PRICES_PATH)]);
+    const postsJson = JSON.parse(atob(postsFile.content.replace(/\n/g, '')));
+    const pricesJson = JSON.parse(atob(pricesFile.content.replace(/\n/g, '')));
+    postsData = postsJson.posts;
+    pricesData = pricesJson.items;
+    renderPosts();
+    renderPrices();
+  } catch (e) {
+    setStatus('Load failed: ' + e.message, true);
+  }
+}
+
+// ── Tabs ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-blog').style.display = btn.dataset.tab === 'blog' ? '' : 'none';
+    document.getElementById('tab-prices').style.display = btn.dataset.tab === 'prices' ? '' : 'none';
+  };
+});
+
+// ── Render posts ──
+function renderPosts() {
+  const list = document.getElementById('posts-list');
+  list.innerHTML = '';
+  postsData.forEach((post, i) => {
+    const card = document.createElement('div');
+    card.className = 'post-card';
+    card.innerHTML = `
+      <div class="post-card__header" onclick="togglePost(${i})">
+        <div>
+          <div class="post-card__title">${post.title_en || '(untitled)'}</div>
+          <div class="post-card__date">${post.date || ''} · ${post.category_en || ''}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <button class="delete-btn" onclick="event.stopPropagation();deletePost(${i})">Delete</button>
+          <span class="post-card__toggle" id="toggle-${i}">+</span>
+        </div>
+      </div>
+      <div class="post-card__body" id="body-${i}">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(${i},'en',this)">EN</button>
+          <button class="lang-tab" onclick="switchLang(${i},'fi',this)">FI</button>
+        </div>
+        <div id="lang-en-${i}">
+          ${field('Slug (URL key)', `slug-${i}`, post.slug, 'text')}
+          ${field('Date (YYYY-MM-DD)', `date-${i}`, post.date, 'text')}
+          ${field('Read time (min)', `readtime-${i}`, post.readTime, 'text')}
+          ${field('Image URL', `img-${i}`, post.img, 'text')}
+          ${field('Category (EN)', `cat-en-${i}`, post.category_en, 'text')}
+          ${field('Title (EN)', `title-en-${i}`, post.title_en, 'text')}
+          ${field('Excerpt (EN)', `excerpt-en-${i}`, post.excerpt_en, 'textarea')}
+          ${field('Body (EN) — use ### for headers, blank line between paragraphs', `body-en-${i}`, post.body_en, 'textarea', 'body')}
+        </div>
+        <div id="lang-fi-${i}" style="display:none">
+          ${field('Category (FI)', `cat-fi-${i}`, post.category_fi, 'text')}
+          ${field('Title (FI)', `title-fi-${i}`, post.title_fi, 'text')}
+          ${field('Excerpt (FI)', `excerpt-fi-${i}`, post.excerpt_fi, 'textarea')}
+          ${field('Body (FI) — use ### for headers, blank line between paragraphs', `body-fi-${i}`, post.body_fi, 'textarea', 'body')}
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function field(label, id, value, type, extra) {
+  if (type === 'textarea') {
+    return `<div class="field"><label>${label}</label><textarea id="${id}" class="${extra||''}">${escHtml(value||'')}</textarea></div>`;
+  }
+  return `<div class="field"><label>${label}</label><input id="${id}" type="text" value="${escHtml(String(value||''))}" /></div>`;
+}
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function togglePost(i) {
+  const body = document.getElementById('body-' + i);
+  const tog = document.getElementById('toggle-' + i);
+  const open = body.classList.toggle('open');
+  tog.classList.toggle('open', open);
+}
+
+function switchLang(i, lang, btn) {
+  document.getElementById('lang-en-' + i).style.display = lang === 'en' ? '' : 'none';
+  document.getElementById('lang-fi-' + i).style.display = lang === 'fi' ? '' : 'none';
+  btn.closest('.lang-tabs').querySelectorAll('.lang-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function deletePost(i) {
+  if (!confirm('Delete this post?')) return;
+  postsData.splice(i, 1);
+  renderPosts();
+}
+
+document.getElementById('add-post-btn').onclick = () => {
+  postsData.push({
+    slug: 'new-post-' + Date.now(),
+    date: new Date().toISOString().split('T')[0],
+    readTime: 3,
+    category_en: '', category_fi: '',
+    img: '',
+    title_en: 'New Post', title_fi: 'Uusi kirjoitus',
+    excerpt_en: '', excerpt_fi: '',
+    body_en: '', body_fi: ''
+  });
+  renderPosts();
+  // open the new post
+  const i = postsData.length - 1;
+  togglePost(i);
+  setTimeout(() => document.getElementById('title-en-' + i)?.scrollIntoView({ behavior: 'smooth' }), 50);
+};
+
+// ── Render prices ──
+function renderPrices() {
+  const tbody = document.getElementById('prices-tbody');
+  tbody.innerHTML = '';
+  pricesData.forEach((item, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="variety-name">${item.key}</span></td>
+      <td><input class="pack-input" id="pack-${i}" value="${item.pack}" /></td>
+      <td style="text-align:right">€ <input class="price-input" id="price-${i}" type="number" step="0.5" min="0" value="${item.price}" /></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── Collect form values ──
+function collectPosts() {
+  return postsData.map((_, i) => ({
+    slug:        document.getElementById('slug-' + i)?.value.trim() || '',
+    date:        document.getElementById('date-' + i)?.value.trim() || '',
+    readTime:    parseInt(document.getElementById('readtime-' + i)?.value) || 3,
+    img:         document.getElementById('img-' + i)?.value.trim() || '',
+    category_en: document.getElementById('cat-en-' + i)?.value.trim() || '',
+    category_fi: document.getElementById('cat-fi-' + i)?.value.trim() || '',
+    title_en:    document.getElementById('title-en-' + i)?.value.trim() || '',
+    excerpt_en:  document.getElementById('excerpt-en-' + i)?.value.trim() || '',
+    body_en:     document.getElementById('body-en-' + i)?.value || '',
+    title_fi:    document.getElementById('title-fi-' + i)?.value.trim() || '',
+    excerpt_fi:  document.getElementById('excerpt-fi-' + i)?.value.trim() || '',
+    body_fi:     document.getElementById('body-fi-' + i)?.value || '',
+  }));
+}
+
+function collectPrices() {
+  return pricesData.map((item, i) => ({
+    key:   item.key,
+    pack:  document.getElementById('pack-' + i)?.value.trim() || item.pack,
+    price: parseFloat(document.getElementById('price-' + i)?.value) || item.price,
+  }));
+}
+
+// ── Save & Deploy ──
+document.getElementById('save-btn').onclick = async () => {
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  setStatus('');
+  try {
+    const posts = collectPosts();
+    const prices = collectPrices();
+    await ghPut(POSTS_PATH, { posts }, 'Update blog posts via admin');
+    await ghPut(PRICES_PATH, { items: prices }, 'Update prices via admin');
+    await fetch(DEPLOY_HOOK, { method: 'POST' });
+    postsData = posts;
+    pricesData = prices;
+    setStatus('Saved! Site rebuilding (~60s)…');
+  } catch (e) {
+    setStatus('Error: ' + e.message, true);
+  }
+  btn.disabled = false;
+  btn.textContent = 'Save & Deploy';
+};
+
+function setStatus(msg, err) {
+  const el = document.getElementById('status-msg');
+  el.textContent = msg;
+  el.className = err ? 'err' : '';
+}
+</script>
 </body>
 </html>
